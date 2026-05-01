@@ -2,13 +2,18 @@
     const mongoose = require("mongoose");
     const dotenv = require("dotenv");
     const app = express();
+    const orderRoute = require("./routes/orders")
 
     dotenv.config();
+
+    app.use(express.json())
 
     mongoose.connect(process.env.MONGO_URL).then(() => {
         console.log("MongoDB connected");
     })
     .catch((err) => console.log(err));
+
+    app.use("/api/pins/", orderRoute);
 
     app.listen(8800,()=>{
         console.log("Backend server is running.ff")
