@@ -15,6 +15,7 @@ export default function MapComponent() {
           defaultCenter={position}
           defaultZoom={14}
           style={{ width: "100%", height: "100%" }}
+          mapId={dc7a76c6ce28daf146017fda}
         >
           <AdvancedMarker position={position}>
             <Pin />
