@@ -1,6 +1,6 @@
 # Backend Modules
 
-cors dotenv express mongoose
+cors dotenv express mongoose axios
 
 # Systems
 1. Pramis - Inventory System
