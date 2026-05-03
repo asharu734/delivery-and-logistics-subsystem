@@ -1,9 +1,15 @@
-import MapComponent from "./components/Map";
+import React from 'react';
+import Map from './components/map.jsx';
+import Navbar from './components/navbar.jsx';
+import './App.css';
 
-export default function App() {
-  return (
-    <div style={{ height: "100vh" }}>
-      <MapComponent />
+function App() {
+  return(
+    <div className="App">
+      <Navbar/>
+      <Map/>
     </div>
-  );
+  )
 }
+
+export default App;
