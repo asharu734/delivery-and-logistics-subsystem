@@ -14,7 +14,7 @@ function DeliveryList() {
         <div>
             <h1>Deliveries</h1>
             {orders.map(order => (
-                <div key={order._id}>Order for: {order.customerName}</div>
+                <div key={order._id}>Customer: {order.customerName}</div>
             ))}
         </div>
     );
