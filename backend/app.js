@@ -7,3 +7,5 @@ const app = express();
 
 app.use(cors());
 app.options('*', cors());
+
+module.exports = app;
