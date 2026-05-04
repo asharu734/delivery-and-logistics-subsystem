@@ -13,8 +13,8 @@ function InventoryList() {
     return (
         <div>
             <h1>Inventory</h1>
-            {orders.map(order => (
-                <div key={order._id}>Inventory: {order.customerName}</div>
+            {orders.map(inventory => (
+                <div key={inventory._id}>Inventory: {order.inventoryName}</div>
             ))}
         </div>
     );
