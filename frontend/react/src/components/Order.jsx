@@ -3,7 +3,8 @@ import axios from 'axios';
 
 function Order() {
     // This is just the main link
-    const DELIVERIES_URI = 'https://customer-and-order-mgmt-system.vercel.app/';
+    const DELIVERIES_URI = 'https://customer-and-order-mgmt-system.vercel.app/api/deliveries';
+    const INVENTORY_URI = 'https://inventory-subsystem-api.onrender.com/'
 
     const [deliveries, setDeliveries] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -11,7 +12,7 @@ function Order() {
     useEffect(() => {
         const fetchDeliveries = async () => {
             try {
-                const res = await axios.get(`DELIVERIES_URI${/api/deliveries}`);
+                const res = await axios.get(`DELIVERIES_URI`);
                 setDeliveries(res.data);
                 setLoading(false);
             }
