@@ -1,16 +1,10 @@
 const mongoose = require("mongoose");
 
-const deliverySchema = new mongoose.Schema(
-    {
+const deliverySchema = new mongoose.Schema({
         deliveryId: {
             type: String,
             required: true,
             unique: true,
-        },
-
-        orderId: {
-            type: String,
-            required: true,
         },
 
         status: {
@@ -19,7 +13,7 @@ const deliverySchema = new mongoose.Schema(
             default: "Pending",
         },
     },
-    { timestamps: true }
+    { timestamps: true },
 );
 
-module.exports = mongoose.model("Delivery", deliverySchema);
+module.exports = mongoose.model("DeliveryModel", deliverySchema);
