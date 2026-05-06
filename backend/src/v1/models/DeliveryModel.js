@@ -1,10 +1,16 @@
 const mongoose = require("mongoose");
 
-const deliverySchema = new mongoose.Schema({
-        deliveryId: {
+const deliverySchema = new mongoose.Schema(
+    {
+        delivery_id: {
             type: String,
             required: true,
             unique: true,
+        },
+
+        order_id: {
+            type: String,
+            required: true,
         },
 
         status: {
@@ -13,22 +19,22 @@ const deliverySchema = new mongoose.Schema({
             default: "Pending",
         },
 
-        estimatedDelivery: {
+        estimated_delivery: {
             type: Date,
             required: true,
         },
 
-        courierName: {
+        courier_name: {
             type: String,
             required: true,
         },
 
-        deliverNotes: {
+        delivery_notes: {
             type: String,
             default: "",
-        }
+        },
     },
-    { timestamps: true },
+    { timestamps: true }
 );
 
-module.exports = mongoose.model("DeliveryModel", deliverySchema);
+module.exports = mongoose.model("Delivery", deliverySchema);
