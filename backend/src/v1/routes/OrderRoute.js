@@ -9,7 +9,7 @@ const {
     getOrdersByCustomer,
     updateOrderStatus,
     cancelOrder,
-} = require("../controllers/orderController");
+} = require("../controllers/OrderController");
 
 router.post("/", createOrder);
 router.get("/", getOrders);

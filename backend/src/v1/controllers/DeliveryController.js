@@ -1,5 +1,5 @@
-const Delivery = require("../models/Delivery");
-const Order = require("../models/Order");
+const Delivery = require("../models/DeliveryModel");
+const Order = require("../models/OrderModel");
 
 const generateDeliveryId = () => {
     return "DEL-" + Date.now();

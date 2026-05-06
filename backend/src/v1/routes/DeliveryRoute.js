@@ -8,7 +8,7 @@ const {
     getDeliveryByOrderId,
     updateDeliveryStatus,
     deleteDelivery,
-} = require("../controllers/deliveryController");
+} = require("../controllers/DeliveryController");
 
 router.post("/", createDelivery);
 router.get("/", getDeliveries);
