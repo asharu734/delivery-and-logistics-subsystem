@@ -8,12 +8,15 @@ const app = express();
 app.use(cors());
 app.options('*', cors());
 
-module.exports = app;
+app.get("/", (req, res) => {
+  res.send("Delivery Status Update API is running");
+});
 
-// To add routes
+app.use("/api/deliveries", require("./routes/DeliveryRoutes"));
 
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+module.exports = app;
