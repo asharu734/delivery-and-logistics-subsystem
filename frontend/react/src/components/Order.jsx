@@ -25,6 +25,7 @@ function Order() {
 
     const handleStatusUpdate = async (id, newStatus) => {
         try {
+            // Gotta put the proper link
             const res = await axios.put(`link`, {
                 status: newStatus
             });
