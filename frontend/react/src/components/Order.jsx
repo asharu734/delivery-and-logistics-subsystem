@@ -37,8 +37,42 @@ function Order() {
     if (loading) return <p>Loading deliveries...</p>;
 
     return (
-        <h1>He</h1>
-    )
-}
+        <div style={{ padding: '20px' }}>
+        <h2>Logistics Dashboard</h2>
+        <table border="1" cellPadding="10" style={{ width: '100%', textAlign: 'left' }}>
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Tracking Number</th>
+                <th>Current Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {deliveries.map((delivery) => (
+                <tr key={delivery._id}>
+                <td>{delivery.orderId}</td>
+                <td>{delivery.trackingNumber}</td>
+                <td>
+                    <strong>{delivery.status}</strong>
+                </td>
+                <td>
+                    <select 
+                    value={delivery.status} 
+                    onChange={(e) => handleStatusUpdate(delivery._id, e.target.value)}
+                    >
+                    <option value="Pending">Pending</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Out for Delivery">Out for Delivery</option>
+                    <option value="Delivered">Delivered</option>
+                    </select>
+                </td>
+                </tr>
+            ))}
+            </tbody>
+        </table>
+        </div>
+    );
+};
 
 export default Order;
