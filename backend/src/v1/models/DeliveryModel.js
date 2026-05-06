@@ -12,6 +12,21 @@ const deliverySchema = new mongoose.Schema({
             enum: ["Pending", "In Transit", "Out for Delivery", "Delivered", "Failed Delivery"],
             default: "Pending",
         },
+
+        estimatedDelivery: {
+            type: Date,
+            required: true,
+        },
+
+        courierName: {
+            type: String,
+            required: true,
+        },
+
+        deliverNotes: {
+            type: String,
+            default: "",
+        }
     },
     { timestamps: true },
 );
