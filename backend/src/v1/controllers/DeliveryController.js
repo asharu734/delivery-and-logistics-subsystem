@@ -175,3 +175,30 @@ exports.deleteDelivery = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+// PUT /api/integration/logistics/delivery-status/:orderId
+exports.syncStatusWithSupplies = async (req, res) => {
+    const { order_id, status } = req.body;
+
+    try {
+        const delivery = await Delivery.findOneAndUpdate(
+            { order_id: order_id },
+            { status: status },
+            { new: true },
+        );
+
+        if (!delivery) {
+            return res.status(404).json({ message: "Delivery record not found in local database.\n"});
+        }
+
+        await axios.put(
+            `${process.env.SUPPLIER_MGMT_URL}/api/integration/logistics/delivery-status/${order_id}`,
+            { status: delivery.status }
+        );
+
+        res.status(200).json({ message: "Status synced with Supplier System\n", delivery});
+    }
+    catch (err) {
+        res.status(500).json({ message: err.message});
+    }
+}
