@@ -11,8 +11,10 @@ const deliverySchema = new mongoose.Schema(
         order_id: {
             type: String,
             required: true,
+            unique: true,
         },
 
+        // -- For Customer and Order Management --
         status: {
             type: String,
             enum: ["Pending", "In Transit", "Out for Delivery", "Delivered", "Failed Delivery"],
@@ -33,6 +35,11 @@ const deliverySchema = new mongoose.Schema(
             type: String,
             default: "",
         },
+        // -- For Customer and Order Management --
+
+        // -- For Inventory --
+
+        // -- For Inventory --
     },
     { timestamps: true }
 );
