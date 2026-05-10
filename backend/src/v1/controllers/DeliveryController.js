@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const Delivery = require("../models/Delivery");
 //const Order = require("../models/Order");
 
@@ -38,13 +39,15 @@ exports.createDelivery = async (req, res) => {
             delivery_notes: delivery_notes || "",
         });
 
-        order.order_status = "Ready for Fulfillment";
-        await order.save();
+        // Invalid URL
+        await axios.patch(`${process.env.ORDER_MGMT_URL}/api/orders/${order_id}/status`, {
+            order_status: "Ready for Fulfillment",
+            delivery_id: delivery.delivery_id
+        })
 
         res.status(201).json({
             message: "Delivery record created successfully.",
             delivery,
-            order,
         });
     } catch (error) {
         res.status(500).json({ message: error.message });
