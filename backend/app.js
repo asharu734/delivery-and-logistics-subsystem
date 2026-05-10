@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
   res.send("Delivery Status Update API is running");
 });
 
-app.use("/api/orders", require("./src/v1/routes/OrderRoute"))
+//app.use("/api/orders", require("./src/v1/routes/OrderRoute"))
 app.use("/api/deliveries", require("./src/v1/routes/DeliveryRoute"));
 
 const PORT = process.env.PORT || 5000;
