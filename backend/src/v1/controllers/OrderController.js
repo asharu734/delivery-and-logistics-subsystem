@@ -1,4 +1,4 @@
-const Order = require("../models/OrderModel");
+const Order = require("../models/Order");
 
 const generateOrderId = () => {
     return "ORD-" + Date.now();
