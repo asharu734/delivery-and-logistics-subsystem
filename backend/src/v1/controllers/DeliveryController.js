@@ -177,7 +177,7 @@ exports.deleteDelivery = async (req, res) => {
 };
 
 // PUT /api/integration/logistics/delivery-status/:orderId
-exports.syncStatusWithSupplies = async (req, res) => {
+exports.syncStatusWithSupplier = async (req, res) => {
     const { order_id, status } = req.body;
 
     try {
