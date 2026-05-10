@@ -23,6 +23,21 @@ exports.createDelivery = async (req, res) => {
             });
         }
 
+        let orderManagementOrder;
+        try {
+            const response = await axios.get(`${process.env.ORDER_MGMT_URL}/api/orders/${order_id}`);
+            orderManagementOrder = response.data;
+        }
+        catch (error) {
+            return res.status(404).json({ message: "Order not found in Customer/Order Mgmt." });
+        }
+        
+        if (orderManagementOrder.payment_status !== "Confirmed") {
+            return res.status(400).json({
+                message: "Delivery can't be created, payment not confirmed.\n",
+            });
+        }
+
         const existingDelivery = await Delivery.findOne({ order_id });
         if (existingDelivery) {
             return res.status(409).json({
@@ -38,12 +53,6 @@ exports.createDelivery = async (req, res) => {
             courier_name,
             delivery_notes: delivery_notes || "",
         });
-
-        // Invalid URL
-        await axios.patch(`${process.env.ORDER_MGMT_URL}/api/orders/${order_id}/status`, {
-            order_status: "Ready for Fulfillment",
-            delivery_id: delivery.delivery_id
-        })
 
         res.status(201).json({
             message: "Delivery record created successfully.",
