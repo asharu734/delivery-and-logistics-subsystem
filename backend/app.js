@@ -3,6 +3,11 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+const connectToMongoDB = require('./config/mongodb');
+
+dotenv.config();
+connectToMongoDB();
+
 const app = express();
 
 app.use(cors());
