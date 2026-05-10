@@ -8,6 +8,7 @@ const {
     getDeliveryByOrderId,
     updateDeliveryStatus,
     deleteDelivery,
+    syncStatusWithSupplier,
 } = require("../controllers/DeliveryController");
 
 router.post("/", createDelivery);
@@ -16,5 +17,6 @@ router.get("/order/:order_id", getDeliveryByOrderId);
 router.get("/:delivery_id", getDeliveryById);
 router.put("/:delivery_id", updateDeliveryStatus);
 router.delete("/:delivery_id", deleteDelivery);
+router.put("/sync/:order_id", syncStatusWithSupplier);
 
 module.exports = router;
