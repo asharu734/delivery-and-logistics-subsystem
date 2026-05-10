@@ -22,20 +22,7 @@ exports.createDelivery = async (req, res) => {
             });
         }
 
-        const order = await Order.findOne({ order_id });
-
-        if (!order) {
-            return res.status(404).json({ message: "Order not found." });
-        }
-
-        if (order.payment_status !== "Confirmed") {
-            return res.status(400).json({
-                message: "Delivery cannot be created because payment is not confirmed.",
-            });
-        }
-
         const existingDelivery = await Delivery.findOne({ order_id });
-
         if (existingDelivery) {
             return res.status(409).json({
                 message: "Delivery record already exists for this order.",
