@@ -14,7 +14,6 @@ const deliverySchema = new mongoose.Schema(
             unique: true,
         },
 
-        // -- For Customer and Order Management --
         status: {
             type: String,
             enum: ["Pending", "In Transit", "Out for Delivery", "Delivered", "Failed Delivery"],
@@ -34,12 +33,7 @@ const deliverySchema = new mongoose.Schema(
         delivery_notes: {
             type: String,
             default: "",
-        },
-        // -- For Customer and Order Management --
-
-        // -- For Inventory --
-
-        // -- For Inventory --
+        }, 
     },
     { timestamps: true }
 );
