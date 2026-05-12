@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import API from "https://delivery-and-logistics-subsystem.onrender.com/api/deliveries";
+import API from "../services/api";
 
 function Order() {
     const [deliveries, setDeliveries] = useState([]);
@@ -11,7 +11,7 @@ function Order() {
 
     const fetchDeliveries = async () => {
         try {
-            const res = await API.get("/deliveries");
+            const res = await API.get("/");
             setDeliveries(res.data);
         } catch (err) {
             console.error("Error fetching deliveries:", err);
@@ -45,7 +45,7 @@ function Order() {
             {/* MAIN CONTENT */}
             <div style={styles.container}>
                 <h2 style={styles.title}>
-                    Orders / Deliveries
+                    Deliveries
                 </h2>
 
                 <div style={styles.tableBox}>
@@ -53,7 +53,7 @@ function Order() {
                         <thead>
                             <tr>
                                 <th>Order ID</th>
-                                <th>Tracking Number</th>
+                                <th>Estimated Delivery</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -62,8 +62,8 @@ function Order() {
                         <tbody>
                             {deliveries.map((d) => (
                                 <tr key={d._id}>
-                                    <td>{d.orderId}</td>
-                                    <td>{d.trackingNumber}</td>
+                                    <td>{d.order_id}</td>
+                                    <td>{d.estimated_delivery}</td>
                                     <td>
                                         <span style={styles.badge}>
                                             {d.status}
