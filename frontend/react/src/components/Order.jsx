@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import API from "../services/api";
+import API from "https://delivery-and-logistics-subsystem.onrender.com/api/deliveries";
 
 function Order() {
     const [deliveries, setDeliveries] = useState([]);
