@@ -6,8 +6,10 @@ System, combines and updates the information, and sends them back.
 ## Backend Deployment
 https://delivery-and-logistics-subsystem.onrender.com/
 
-# Routes
-
+# Important Routes
+GET /api/deliveries
+POST /api/deliveries
+PUT /api/deliveries/sync/:order_id
 
 
 # Backend Modules
