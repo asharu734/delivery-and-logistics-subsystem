@@ -11,7 +11,6 @@ GET /api/deliveries
 POST /api/deliveries
 PUT /api/deliveries/sync/:order_id
 
-
 # Backend Modules
 * https://github.com/g4wkgawk/Inventory-Subsystem.git
 * https://github.com/Ping2023A/supplier-management-system.git
