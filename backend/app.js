@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   // CHANGE THIS SHIT LATER
-  origin: 'https://delivery-and-logistics-subsystem-bab46juwv.vercel.app/',
+  origin: 'https://delivery-and-logistics-subsystem.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -23,7 +23,6 @@ app.get("/", (req, res) => {
   res.send("Delivery Status Update API is running");
 });
 
-//app.use("/api/orders", require("./src/v1/routes/OrderRoute"))
 app.use("/api/deliveries", require("./src/v1/routes/DeliveryRoute"));
 
 const PORT = process.env.PORT || 5000;
@@ -32,3 +31,4 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
