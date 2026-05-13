@@ -202,3 +202,38 @@ exports.syncStatusWithSupplier = async (req, res) => {
         res.status(500).json({ message: err.message});
     }
 }
+
+exports.pullFromCustomerOrders = async (req, res) => {
+    try {
+        const response = await axios.get(`${ORDER_MGMT_URL}/api/orders`);
+        const orders = response.data;
+
+        const syncResults = [];
+
+        for (const order of orders) {
+            const deliveryData = {
+                order_id: order._id,
+                customer_name: order.customer_name || "Unknown",
+                shipping_address: order.shipping_address || "No Address",
+                status: "Pending",
+            };
+
+            const delivery = await Delivery.findOneAndUpdate(
+                { order_id: order._id },
+                { $setOnInsert: { ...deliveryData, delivery_id: `DEL-${Date.now()}-${Math.floor(Math.random() * 1000)}` } },
+                { upsert: true, new: true },
+            );
+
+            syncResults.push(delivery);
+        }
+
+        res.status(200).json({ 
+            message: `Successfully synced ${syncResults.length} orders.`, 
+            deliveries: syncResults
+        });     
+    }
+    catch (err) {
+        console.error(`Sync Error: ${err.message}`);
+        res.status(500).json({ message: "Failed to sync", error: err.message });
+    }
+};
