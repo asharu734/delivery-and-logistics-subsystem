@@ -78,7 +78,7 @@ function Order() {
                     <table style={styles.table}>
                         <thead>
                             <tr>
-                                <th>Order ID</th>
+                                <th>Delivery ID</th>
                                 <th>Estimated Delivery</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -88,7 +88,7 @@ function Order() {
                         <tbody>
                             {deliveries.map((d) => (
                                 <tr key={d._id}>
-                                    <td>{d.order_id}</td>
+                                    <td>{d.delivery_id}</td>
                                     <td>{d.estimated_delivery}</td>
                                     <td>
                                         <span style={styles.badge}>
