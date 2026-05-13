@@ -4,6 +4,7 @@ import API from "../services/api";
 function Order() {
     const [deliveries, setDeliveries] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isSyncing, setIsSyncing] = useState(false);
 
     useEffect(() => {
         fetchDeliveries();
@@ -22,7 +23,7 @@ function Order() {
 
     const updateStatus = async (id, status) => {
         try {
-            await API.put(`/deliveries/${id}`, { status });
+            await API.put(`/${id}`, { status });
 
             setDeliveries((prev) =>
                 prev.map((d) =>
@@ -32,6 +33,23 @@ function Order() {
         } catch (err) {
             console.error("Update failed:", err);
             alert("Failed to update status");
+        }
+    };
+
+    const handleSync = async () => {
+        setIsSyncing(true);
+        try {
+            // This calls the POST route in your backend that uses Axios to fetch central orders
+            const res = await API.post("/sync-all");
+            alert(res.data.message);
+            
+            // Refresh the table after syncing
+            fetchDeliveries(); 
+        } catch (err) {
+            console.error("Sync failed:", err);
+            alert("Failed to sync with the Order Management System.");
+        } finally {
+            setIsSyncing(false);
         }
     };
 
@@ -47,6 +65,14 @@ function Order() {
                 <h2 style={styles.title}>
                     Deliveries
                 </h2>
+
+                <button 
+                    onClick={handleSync} 
+                    disabled={isSyncing}
+                    style={isSyncing ? styles.syncBtnDisabled : styles.syncBtn}
+                >
+                    {isSyncing ? "Syncing..." : "Sync Orders from Central System"}
+                </button>
 
                 <div style={styles.tableBox}>
                     <table style={styles.table}>
