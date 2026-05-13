@@ -205,7 +205,7 @@ exports.syncStatusWithSupplier = async (req, res) => {
 
 exports.pullFromCustomerOrders = async (req, res) => {
     try {
-        const response = await axios.get(`${ORDER_MGMT_URL}/api/orders`);
+        const response = await axios.get(`${process.env.ORDER_MGMT_URL}/api/orders`);
         const orders = response.data;
 
         const syncResults = [];
