@@ -7,9 +7,9 @@ System, combines and updates the information, and sends them back.
 https://delivery-and-logistics-subsystem.onrender.com/
 
 # Important Routes
-GET /api/deliveries
-POST /api/deliveries
-PUT /api/deliveries/sync/:order_id
+* GET /api/deliveries
+* POST /api/deliveries
+* PUT /api/deliveries/sync/:order_id
 
 # Backend Modules
 * https://github.com/g4wkgawk/Inventory-Subsystem.git
