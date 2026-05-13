@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   // CHANGE THIS SHIT LATER
-  origin: 'http://localhost:5173',
+  origin: 'https://delivery-and-logistics-subsystem.vercel.app/',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
